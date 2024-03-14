@@ -24,7 +24,6 @@ class Family extends Model
         "apartment_num",
         "more_location_info",
         "status",
-        "family_id",
         "priest_id",
         "created_by",
         "updated_by"

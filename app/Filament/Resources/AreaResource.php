@@ -39,6 +39,11 @@ class AreaResource extends Resource
         return __("common.area.areas");
     }
 
+    public static function getNavigationBadge(): ?string
+    {
+        return static::getModel()::count();
+    }
+
     public static function form_create()
     {
         return [
@@ -112,6 +117,7 @@ class AreaResource extends Resource
         return [
             'index' => Pages\ListAreas::route('/'),
             'create' => Pages\CreateArea::route('/create'),
+            'view' => Pages\ViewArea::route('/{record}'),
             'edit' => Pages\EditArea::route('/{record}/edit'),
         ];
     }

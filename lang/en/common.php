@@ -6,6 +6,7 @@ return [
         "updated_at" => "Updated at",
         "created_by" => "Created by",
         "updated_by" => "Updated by",
+        "empty" => "Empty",
     ],
 
     "groups" => [
@@ -73,6 +74,7 @@ return [
         "name_4" => "Fourth Name",
         "name_5" => "Fifth Name",
         "name" => "Name",
+        "family_role" => "Family Role",
         "alias_name" => "Alias Name",
         "family" => "Family",
         "gender" => "Gender",

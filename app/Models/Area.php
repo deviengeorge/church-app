@@ -14,10 +14,10 @@ class Area extends Model
         "name",
     ];
 
-    // public function families(): HasMany
-    // {
-    //     return $this->hasMany(Family::class);
-    // }
+    public function families()
+    {
+        return $this->hasManyThrough(Family::class, Street::class);
+    }
 
     public function streets(): HasMany
     {

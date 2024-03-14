@@ -47,6 +47,11 @@ class UserResource extends Resource
         return __("common.user.users");
     }
 
+    public static function getNavigationBadge(): ?string
+    {
+        return static::getModel()::count();
+    }
+
     public static function form_create()
     {
         return [

@@ -43,6 +43,11 @@ class StreetResource extends Resource
         return __("common.street.streets");
     }
 
+    public static function getNavigationBadge(): ?string
+    {
+        return static::getModel()::count();
+    }
+
     public static function form_create(int $area_id = null)
     {
         return [
@@ -133,6 +138,7 @@ class StreetResource extends Resource
         return [
             'index' => Pages\ListStreets::route('/'),
             'create' => Pages\CreateStreet::route('/create'),
+            'view' => Pages\ViewStreet::route('/{record}'),
             'edit' => Pages\EditStreet::route('/{record}/edit'),
         ];
     }

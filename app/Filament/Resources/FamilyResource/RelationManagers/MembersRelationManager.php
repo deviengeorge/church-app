@@ -31,9 +31,25 @@ class MembersRelationManager extends RelationManager
         return $table
             ->recordTitleAttribute('name')
             ->columns([
-                Tables\Columns\TextColumn::make('name')->words(3, ""),
+                Tables\Columns\TextColumn::make('name')
+                    ->label("common.person.name")
+                    ->translateLabel()
+                    ->words(3, ""),
                 Tables\Columns\SelectColumn::make('family_role')
-                    ->options(PersonFamilyRole::class)
+                    ->label("common.person.family_role")
+                    ->translateLabel()
+                    ->options(PersonFamilyRole::class),
+                Tables\Columns\TextColumn::make("date_of_death")
+                    ->label("common.person.died")
+                    ->translateLabel()
+                    ->default("alive")
+                    ->formatStateUsing(function (Person $record): string {
+                        return $record->date_of_death == null ? "Alive" : "Died";
+                    })
+                    ->badge()
+                    ->color(function (Person $record) {
+                        return $record->date_of_death == null ? "success" : "danger";
+                    }),
             ])
             ->filters([
                 //

@@ -64,6 +64,11 @@ class PersonResource extends Resource
         return __("common.person.people");
     }
 
+    public static function getNavigationBadge(): ?string
+    {
+        return static::getModel()::count();
+    }
+
     public static function form_create()
     {
         return [
@@ -137,13 +142,6 @@ class PersonResource extends Resource
                         //         })
                         // )
                         ->default(PersonStatus::UNEMPLOYED),
-                    // ->afterStateUpdated(function (Select $component, Forms\Get $get) {
-                    //     return $component
-                    //         ->getContainer()
-                    //         ->getComponent('person_status_sections')
-                    //         ->getChildComponentContainer()
-                    //         ->fill();
-                    // }),
 
                     Textarea::make('note')
                         ->label("common.person.note")
@@ -313,7 +311,8 @@ class PersonResource extends Resource
                 ->schema([
                     DatePicker::make('date_of_death')
                         ->label("common.person.date_of_death")
-                        ->translateLabel(),
+                        ->translateLabel()
+                        ->closeOnDateSelection(),
                 ]),
         ];
     }
@@ -330,9 +329,14 @@ class PersonResource extends Resource
         return $table
             ->striped()
             ->columns([
+                Tables\Columns\TextColumn::make('index')
+                    ->badge()
+                    ->color("danger")
+                    ->rowIndex(),
                 Tables\Columns\TextColumn::make('name')
                     ->label("common.person.name")
                     ->translateLabel()
+                    // To limit the name to 3 words instead of displaying the whole name ( 5 words )
                     ->words(3, "")
                     ->searchable(),
 
@@ -353,6 +357,9 @@ class PersonResource extends Resource
                     ->prefix("عائلة ")
                     ->badge()
                     ->color("info")
+                    ->url(function (Person $record) {
+                        return FamilyResource::getUrl('view', ["record" => $record->family]);
+                    })
                     ->searchable()
                     ->sortable(),
 
@@ -455,6 +462,7 @@ class PersonResource extends Resource
         return [
             'index' => Pages\ListPeople::route('/'),
             'create' => Pages\CreatePerson::route('/create'),
+            'view' => Pages\ViewPerson::route('/{record}'),
             'edit' => Pages\EditPerson::route('/{record}/edit'),
         ];
     }

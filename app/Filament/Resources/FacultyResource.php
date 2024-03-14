@@ -45,6 +45,11 @@ class FacultyResource extends Resource
         return __("common.faculty.faculties");
     }
 
+    public static function getNavigationBadge(): ?string
+    {
+        return static::getModel()::count();
+    }
+
     public static function form_create()
     {
         return [
