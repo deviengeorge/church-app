@@ -9,10 +9,12 @@ use App\Filament\Resources\FamilyResource\Pages;
 use App\Filament\Resources\FamilyResource\RelationManagers;
 use App\Filament\Traits\CreatedAtField;
 use App\Filament\Traits\UpdatedAtField;
+use App\Livewire\FamilyReport;
 use App\Models\Area;
 use App\Models\Family;
 use App\Models\Street;
 use App\Models\User;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Filament\Forms;
 use Filament\Infolists;
 use Filament\Forms\Components\Placeholder;
@@ -31,9 +33,13 @@ use Filament\Resources\Resource;
 use Filament\Support\Enums\IconPosition;
 use Filament\Tables;
 use Filament\Tables\Table;
+use GuzzleHttp\Client;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Blade;
 use pxlrbt\FilamentExcel\Actions\Tables\ExportBulkAction;
 use pxlrbt\FilamentExcel\Exports\ExcelExport;
+
+use function Termwind\render;
 
 class FamilyResource extends Resource
 {
@@ -253,6 +259,21 @@ class FamilyResource extends Resource
                 //
             ])
             ->actions([
+                Tables\Actions\Action::make('pdf')
+                    ->label('PDF')
+                    ->color('success')
+                    ->icon('heroicon-m-arrow-down-tray')
+                    ->action(function (Family $record) {
+
+                        $client = new Client();
+                        $html = $client->request('GET', route("family-report", ["family" => $record]))->getBody();
+
+                        return response()->streamDownload(function () use ($record, $html) {
+                            echo Pdf::loadHTML(
+                                $html
+                            )->stream();
+                        }, $record->id . '.pdf');
+                    }),
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),

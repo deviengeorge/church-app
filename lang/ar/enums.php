@@ -13,6 +13,7 @@ return [
         "school_student" => "طالب مدرسي",
         "university_student" => "طالب جامعي",
         "worker" => "عامل",
+        "unknown" => "غير معروف",
     ],
     "person_gender" => [
         "male" => "ذكر",

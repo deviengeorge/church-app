@@ -11,6 +11,7 @@ enum PersonStatus: string implements HasLabel
     case SCHOOL_STUDENT = "school_student";
     case UNIVERSITY_STUDENT = "university_student";
     case WORKER = "worker";
+    case UNKNOWN = "unknown";
 
     public function getLabel(): ?string
     {
@@ -20,6 +21,7 @@ enum PersonStatus: string implements HasLabel
             self::SCHOOL_STUDENT => __("enums.person_status.school_student"),
             self::UNIVERSITY_STUDENT => __("enums.person_status.university_student"),
             self::WORKER => __("enums.person_status.worker"),
+            self::UNKNOWN => __("enums.person_status.unknown")
         };
     }
 

@@ -13,6 +13,7 @@ return [
         "school_student" => "School Student",
         "university_student" => "University Student",
         "worker" => "Worker",
+        "unknown" => "Unknown",
     ],
     "person_gender" => [
         "male" => "Male",

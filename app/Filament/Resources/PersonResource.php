@@ -27,6 +27,8 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
+use Filament\Infolists\Infolist;
+use Filament\Infolists;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Actions\BulkAction;
@@ -141,7 +143,7 @@ class PersonResource extends Resource
                         //             $record->save();
                         //         })
                         // )
-                        ->default(PersonStatus::UNEMPLOYED),
+                        ->default(PersonStatus::UNKNOWN),
 
                     Textarea::make('note')
                         ->label("common.person.note")
@@ -242,14 +244,14 @@ class PersonResource extends Resource
                 ->collapsed()
                 ->schema([
                     Repeater::make('phones')->simple(
-                        TextInput::make('phones')->numeric()
+                        TextInput::make('phones')
                     )
                         ->label("common.person.phones")
                         ->translateLabel()
                         ->default(['']),
 
                     Repeater::make('whatsapp_phones')->simple(
-                        TextInput::make('whatsapp_phones')->numeric(),
+                        TextInput::make('whatsapp_phones')
                     )
                         ->label("common.person.whatsapp_phones")
                         ->translateLabel()
@@ -303,7 +305,8 @@ class PersonResource extends Resource
                     DatePicker::make('birthday')
                         ->label("common.person.birthday")
                         ->translateLabel(),
-                ])->columns(3),
+                ])
+                ->columns(3),
 
             Section::make(__("common.person.sections.dead_info"))
                 ->collapsible()
@@ -416,6 +419,7 @@ class PersonResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\ViewAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -448,6 +452,58 @@ class PersonResource extends Resource
             ]);
     }
 
+    public static function infolist(Infolist $infolist): Infolist
+    {
+        return $infolist
+            ->schema([
+                Infolists\Components\Section::make(__("common.person.sections.personal_info"))
+                    ->schema([
+                        Infolists\Components\TextEntry::make('name')
+                            ->label("common.person.name")
+                            ->translateLabel()
+                            ->copyable(),
+                        Infolists\Components\TextEntry::make('title')
+                            ->label("common.person.title")
+                            ->translateLabel()
+                            ->badge()
+                            ->placeholder(__("common.common_fields.empty")),
+                        Infolists\Components\TextEntry::make('gender')
+                            ->label("common.person.gender")
+                            ->translateLabel()
+                            ->badge()
+                            ->placeholder(__("common.common_fields.empty")),
+
+                        Infolists\Components\TextEntry::make("phones")
+                            ->label("common.person.phones")
+                            ->translateLabel()
+                            ->listWithLineBreaks()
+                            ->bulleted()
+                            ->placeholder(__("common.common_fields.empty")),
+
+                        Infolists\Components\TextEntry::make("whatsapp_phones")
+                            ->label("common.person.whatsapp_phones")
+                            ->translateLabel()
+                            ->listWithLineBreaks()
+                            ->bulleted()
+                            ->placeholder(__("common.common_fields.empty")),
+                        Infolists\Components\TextEntry::make("birthday")
+                            ->label("common.person.birthday")
+                            ->translateLabel()
+                            ->date()
+                            ->placeholder(__("common.common_fields.empty")),
+                        Infolists\Components\TextEntry::make("note")
+                            ->label("common.person.note")
+                            ->translateLabel()
+                            ->columnSpanFull()
+                            ->placeholder(__("common.common_fields.empty")),
+                        Infolists\Components\TextEntry::make("confession_priest")
+                            ->label("common.person.confession_priest")
+                            ->translateLabel()
+                            ->placeholder(__("common.common_fields.empty")),
+                    ])
+                    ->columns(3),
+            ]);
+    }
 
 
     public static function getRelations(): array

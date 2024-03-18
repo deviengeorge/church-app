@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Enums\PersonStatus;
 use App\Enums\PersonTitle;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -55,7 +56,8 @@ class PeopleSeeder extends Seeder
                 "title" => $title,
                 "confession_priest" => $confession_priest,
                 "birthday" => $birthday,
-                "date_of_death" => $date_of_death
+                "date_of_death" => $date_of_death,
+                "status" => PersonStatus::UNKNOWN,
             ]);
         }
     }

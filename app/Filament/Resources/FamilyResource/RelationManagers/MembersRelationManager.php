@@ -39,16 +39,16 @@ class MembersRelationManager extends RelationManager
                     ->label("common.person.family_role")
                     ->translateLabel()
                     ->options(PersonFamilyRole::class),
-                Tables\Columns\TextColumn::make("date_of_death")
+                Tables\Columns\TextColumn::make("is_died")
                     ->label("common.person.died")
                     ->translateLabel()
-                    ->default("alive")
-                    ->formatStateUsing(function (Person $record): string {
-                        return $record->date_of_death == null ? "Alive" : "Died";
+                    ->getStateUsing(fn (Person $record) => $record->date_of_death == null)
+                    ->formatStateUsing(function (bool $state): string {
+                        return $state ? "Alive" : "Died";
                     })
                     ->badge()
-                    ->color(function (Person $record) {
-                        return $record->date_of_death == null ? "success" : "danger";
+                    ->color(function (bool $state) {
+                        return $state ? "success" : "danger";
                     }),
             ])
             ->filters([

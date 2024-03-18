@@ -50,6 +50,11 @@ class Person extends Model
         return $this->belongsTo(WorkerInfo::class);
     }
 
+    public function get_is_dead()
+    {
+        return $this->date_of_death != null;
+    }
+
     protected static function booted(): void
     {
         static::creating(function (Person $person) {
