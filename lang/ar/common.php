@@ -7,6 +7,7 @@ return [
         "created_by" => "انشأ من قبل",
         "updated_by" => "تم التحديث بواسطة",
         "empty" => "لا يوجد",
+        "unknown" => "غير معروف",
     ],
     "groups" => [
         "location" => "المكان",
@@ -94,6 +95,9 @@ return [
         "birthday" => "تاريخ الميلاد",
         "date_of_death" => "تاريخ الوفاة",
         "status" => "الحالة",
+        "died" => "متوفي؟",
+        "alive" => "حي",
+        "dead" => "متوفي",
 
         "school_student_info" => [
             "school" => "مدرسة",

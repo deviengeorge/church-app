@@ -7,6 +7,7 @@ return [
         "created_by" => "Created by",
         "updated_by" => "Updated by",
         "empty" => "Empty",
+        "unknown" => "Unknown",
     ],
 
     "groups" => [
@@ -86,6 +87,9 @@ return [
         "birthday" => "Birthday",
         "date_of_death" => "Date of Death",
         "status" => "Status",
+        "died" => "Died?",
+        "alive" => "Alive",
+        "dead" => "Dead",
 
         "school_student_info" => [
             "school" => "School",
