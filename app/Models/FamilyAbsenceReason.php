@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class FamilyAbsenceReason extends Model
 {
+    protected $table = "family_absence_reasons";
+
     use HasFactory;
 
     protected $fillable = [
