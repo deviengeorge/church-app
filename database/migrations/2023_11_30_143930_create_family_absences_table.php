@@ -1,11 +1,11 @@
 <?php
 
+use App\Models\Family;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -16,7 +16,8 @@ return new class extends Migration
             $table->string('details');
 
             // Family One To Many
-            $table->foreignId('family_id')->constrained()->cascadeOnDelete();
+            // $table->foreignId('family_id')->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(Family::class)->constrained()->cascadeOnDelete();
 
             // Absence Reason One To Many
             $table->foreignId('reason_id')
@@ -36,6 +37,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('absences');
+        Schema::dropIfExists('family_absences');
     }
 };
