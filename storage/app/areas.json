@@ -1,0 +1,142 @@
+[
+  {
+    "id": 1,
+    "name": "وادي حوف",
+    "in_church_service": true
+  },
+  {
+    "id": 2,
+    "name": "تقسيم النصر للسيارات",
+    "in_church_service": true
+  },
+  {
+    "id": 3,
+    "name": "عزبة كامل صدقي القبلية",
+    "in_church_service": true
+  },
+  {
+    "id": 4,
+    "name": "مدينة الهدي",
+    "in_church_service": false
+  },
+  {
+    "id": 5,
+    "name": "تقسيم النصر للسيارات الجديد",
+    "in_church_service": false
+  },
+  {
+    "id": 6,
+    "name": "تقسيم العاملين بالمحافظة",
+    "in_church_service": true
+  },
+  {
+    "id": 7,
+    "name": "تقسيم القوات المسلحة",
+    "in_church_service": true
+  },
+  {
+    "id": 8,
+    "name": "تقسيم العاملين بشركة النصر",
+    "in_church_service": true
+  },
+  {
+    "id": 9,
+    "name": "تقسيم السكة الحديد",
+    "in_church_service": false
+  },
+  {
+    "id": 10,
+    "name": "تقسيم الجيش",
+    "in_church_service": false
+  },
+  {
+    "id": 11,
+    "name": "ترعة الخشاب",
+    "in_church_service": false
+  },
+  {
+    "id": 12,
+    "name": "عزبة النخل",
+    "in_church_service": false
+  },
+  {
+    "id": 13,
+    "name": "تقسيم فريد زكي",
+    "in_church_service": false
+  },
+  {
+    "id": 14,
+    "name": "حدائق حلوان",
+    "in_church_service": false
+  },
+  {
+    "id": 15,
+    "name": "جمال عبد الناصر",
+    "in_church_service": false
+  },
+  {
+    "id": 16,
+    "name": "تقسيم المعلمين",
+    "in_church_service": false
+  },
+  {
+    "id": 17,
+    "name": "الدواجن",
+    "in_church_service": false
+  },
+  {
+    "id": 18,
+    "name": "عزبة الوالدة",
+    "in_church_service": false
+  },
+  {
+    "id": 19,
+    "name": "الملاءة",
+    "in_church_service": false
+  },
+  {
+    "id": 20,
+    "name": "حلوان",
+    "in_church_service": false
+  },
+  {
+    "id": 21,
+    "name": "المعصرة",
+    "in_church_service": false
+  },
+  {
+    "id": 22,
+    "name": "طره البلد",
+    "in_church_service": false
+  },
+  {
+    "id": 23,
+    "name": "15 مايو",
+    "in_church_service": false
+  },
+  {
+    "id": 24,
+    "name": "زهراء المعادى",
+    "in_church_service": false
+  },
+  {
+    "id": 25,
+    "name": "دائري المعادي",
+    "in_church_service": false
+  },
+  {
+    "id": 26,
+    "name": "شبرا",
+    "in_church_service": false
+  },
+  {
+    "id": 27,
+    "name": "تقسيم المحافظة",
+    "in_church_service": true
+  },
+  {
+    "id": 28,
+    "name": "تقسيم العاملين",
+    "in_church_service": true
+  }
+]
