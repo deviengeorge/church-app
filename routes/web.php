@@ -13,6 +13,6 @@ Route::get('/', function () {
 
 Route::get("/pdf/family-report/{family}", [PDFController::class, "family_report"]);
 
-Livewire::setUpdateRoute(function ($handle) {
-    return Route::post('/public/livewire/update', $handle);
-});
+// Livewire::setUpdateRoute(function ($handle) {
+//     return Route::post('/public/livewire/update', $handle);
+// });
