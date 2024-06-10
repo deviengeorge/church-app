@@ -21,7 +21,12 @@ return new class extends Migration {
             $table->foreignIdFor(Family::class)->constrained()->cascadeOnDelete();
 
             // Absence Reason One To Many
-            $table->foreignIdFor(FamilyAbsenceReason::class, "reason_id")->constrained()->nullOnDelete();
+            $table->foreignIdFor(FamilyAbsenceReason::class, "reason_id")
+                ->constrained(
+                    table: 'family_absence_reasons',
+                    column: 'id'
+                )
+                ->nullOnDelete();
             // $table->foreignId('reason_id')
             //     ->constrained(
             //         table: 'family_absence_reasons',
