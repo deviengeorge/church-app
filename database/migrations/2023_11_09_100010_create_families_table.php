@@ -19,11 +19,12 @@ return new class extends Migration {
             $table->string('google_map_link')->nullable();
 
             // Area Many To One
-            $table->foreignId('area_id')->nullable()->constrained()->nullOnDelete();
+            // $table->foreignId('area_id')->nullable()->constrained()->nullOnDelete();
             $table->foreignIdFor(Area::class, 'area_id')->nullable()->constrained()->nullOnDelete();
 
             // Street Many To One
-            $table->foreignId('street_id')->nullable()->constrained()->nullOnDelete();
+            // $table->foreignId('street_id')->nullable()->constrained()->nullOnDelete();
+            $table->foreignIdFor(Street::class, 'stret_id')->nullable()->constrained()->nullOnDelete();
 
             // Street Many To One
             // TODO: What is this?
