@@ -30,9 +30,9 @@ class PeopleSeeder extends Seeder
             $birthday = $person['birthday'];
             $confession_priest = $person['confession_prist'];
 
-            if ($birthday == "") {
-                $birthday = null;
-            }
+            // if ($birthday == "") {
+            $birthday = null;
+            // }
 
             $date_of_death = null;
 
