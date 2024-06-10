@@ -20,6 +20,7 @@ return new class extends Migration {
 
             // Area Many To One
             $table->foreignId('area_id')->nullable()->constrained()->nullOnDelete();
+            $table->foreignIdFor(Area::class, 'area_id')->nullable()->constrained()->nullOnDelete();
 
             // Street Many To One
             $table->foreignId('street_id')->nullable()->constrained()->nullOnDelete();
