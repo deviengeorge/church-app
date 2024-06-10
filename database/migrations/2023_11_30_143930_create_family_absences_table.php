@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Family;
+use App\Models\FamilyAbsenceReason;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -20,12 +21,13 @@ return new class extends Migration {
             $table->foreignIdFor(Family::class)->constrained()->cascadeOnDelete();
 
             // Absence Reason One To Many
-            $table->foreignId('reason_id')
-                ->constrained(
-                    table: 'family_absence_reasons',
-                    column: 'id'
-                )
-                ->nullOnDelete();
+            $table->foreignIdFor(FamilyAbsenceReason::class, "reason_id")->constrained()->nullOnDelete();
+            // $table->foreignId('reason_id')
+            //     ->constrained(
+            //         table: 'family_absence_reasons',
+            //         column: 'id'
+            //     )
+            //     ->nullOnDelete();
 
             $table->timestamp('visited_at');
             $table->timestamps();
