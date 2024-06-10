@@ -24,7 +24,7 @@ return new class extends Migration {
 
             // Street Many To One
             // $table->foreignId('street_id')->nullable()->constrained()->nullOnDelete();
-            $table->foreignIdFor(Street::class, 'stret_id')->nullable()->constrained()->nullOnDelete();
+            $table->foreignIdFor(Street::class, 'street_id')->nullable()->constrained()->nullOnDelete();
 
             // Street Many To One
             // TODO: What is this?
