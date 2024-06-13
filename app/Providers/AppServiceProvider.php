@@ -3,6 +3,9 @@
 namespace App\Providers;
 
 use BezhanSalleh\FilamentLanguageSwitch\LanguageSwitch;
+use Filament\Support\Facades\FilamentView;
+use Filament\View\PanelsRenderHook;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -24,5 +27,11 @@ class AppServiceProvider extends ServiceProvider
             $switch
                 ->locales(['ar', 'en']);
         });
+
+        FilamentView::registerRenderHook(
+            PanelsRenderHook::HEAD_END,
+            // fn(): string => '<meta name="author" content="devien george" />',
+            fn(): string => Blade::render('@laravelPWA'),
+        );
     }
 }

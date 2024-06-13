@@ -12,3 +12,6 @@ status_db:
 
 new_translation:
 	touch lang/{ar,en}/$(name).php
+
+folder:
+	explorer.exe .

@@ -19,6 +19,7 @@
         "marjose123/filament-lockscreen": "^2.0",
         "pxlrbt/filament-excel": "^2.1",
         "shuvroroy/filament-spatie-laravel-backup": "^2.1",
+        "silviolleite/laravelpwa": "^2.0",
         "simplesoftwareio/simple-qrcode": "~4",
         "stijnvanouplines/blade-country-flags": "^1.0"
     },
