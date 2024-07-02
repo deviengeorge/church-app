@@ -6,11 +6,9 @@ use App\Enums\PersonFamilyRole;
 use App\Enums\PersonGender;
 use App\Enums\PersonStatus;
 use App\Enums\PersonTitle;
-use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Person extends Model
 {
@@ -33,6 +31,11 @@ class Person extends Model
     public function family(): BelongsTo
     {
         return $this->belongsTo(Family::class);
+    }
+
+    public function parentFamily(): BelongsTo
+    {
+        return $this->belongsTo(Family::class, "parent_family_id");
     }
 
     public function school_student_info(): BelongsTo

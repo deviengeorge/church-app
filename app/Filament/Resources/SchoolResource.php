@@ -12,12 +12,11 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class SchoolResource extends Resource
 {
     protected static ?string $model = School::class;
+
     public static function getNavigationIcon(): ?string
     {
         return match (app()->getLocale()) {
@@ -25,6 +24,7 @@ class SchoolResource extends Resource
             'ar' => 'heroicon-o-arrow-small-left'
         };
     }
+
     public static function getNavigationGroup(): string
     {
         return __("common.groups.education");
@@ -115,7 +115,7 @@ class SchoolResource extends Resource
         return [
             'index' => Pages\ListSchools::route('/'),
             'create' => Pages\CreateSchool::route('/create'),
-            // 'edit' => Pages\EditSchool::route('/{record}/edit'),
+            'edit' => Pages\EditSchool::route('/{record}/edit'),
         ];
     }
 }

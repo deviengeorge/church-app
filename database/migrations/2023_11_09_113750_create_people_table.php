@@ -8,7 +8,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
+return new class extends Migration
+{
     /**
      * Run the migrations.
      */
@@ -34,7 +35,7 @@ return new class extends Migration {
             $table->date('birthday')->nullable();
 
             // Family One To Many
-            // $table->foreignId('family_id')->nullable()->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(Family::class, "parent_family_id")->nullable()->nullOnDelete();
             $table->foreignIdFor(Family::class, "family_id")->nullable()->cascadeOnDelete();
             $table->string('family_role')->nullable();
 
@@ -43,20 +44,11 @@ return new class extends Migration {
             // worker_info_id
             $table->foreignIdFor(WorkerInfo::class, "worker_info_id")->nullable()->constrained()->cascadeOnDelete();
 
-            // $table->foreignId('worker_info_id')->nullable()->constrained(table: "worker_infos")->cascadeOnDelete();
-            // $table->unique('worker_info_id');
-
             // school_student_id
             $table->foreignIdFor(SchoolStudentInfo::class, "school_student_info_id")->nullable()->constrained()->cascadeOnDelete();
 
-            // $table->foreignId('school_student_info_id')->nullable()->constrained(table: "school_student_infos", column: "id")->cascadeOnDelete();
-            // $table->unique('school_student_info_id');
-
             // university_student_id
             $table->foreignIdFor(UniversityStudentInfo::class, "university_student_info_id")->nullable()->constrained()->cascadeOnDelete();
-
-            // $table->foreignId('university_student_info_id')->nullable()->constrained(table: "university_student_infos")->cascadeOnDelete();
-            // $table->unique('university_student_info_id');
 
             $table->timestamps();
         });

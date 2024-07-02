@@ -35,7 +35,8 @@ class MembersRelationManager extends RelationManager
     public function table(Table $table): Table
     {
         return $table
-            ->recordTitleAttribute('name')
+            ->recordTitleAttribute("name")
+            ->inverseRelationship("family")
             ->columns([
                 Tables\Columns\TextColumn::make('name')
                     ->label("common.person.name")
@@ -50,7 +51,7 @@ class MembersRelationManager extends RelationManager
                 Tables\Columns\TextColumn::make("is_died")
                     ->label("common.person.died")
                     ->translateLabel()
-                    ->getStateUsing(fn(Person $record) => $record->date_of_death == null)
+                    ->getStateUsing(fn (Person $record) => $record->date_of_death == null)
                     ->formatStateUsing(function (bool $state): string {
                         return $state ? __("common.person.alive") : __("common.person.dead");
                     })
@@ -64,10 +65,8 @@ class MembersRelationManager extends RelationManager
             ])
             ->headerActions([
                 Tables\Actions\CreateAction::make(),
-                // Tables\Actions\AssociateAction::make()
-                //     ->recordSelectOptionsQuery(
-                //         fn () => Person::where('family_id', '=', 'null')
-                //     ),
+                Tables\Actions\AssociateAction::make()
+                    ->preloadRecordSelect(),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
@@ -80,12 +79,12 @@ class MembersRelationManager extends RelationManager
                         ->action(function ($record) {
                             $record->family->update(["name" => $record->name]);
                         }),
-                    Tables\Actions\DeleteAction::make(),
+                    Tables\Actions\DissociateAction::make(),
                 ])
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+                    Tables\Actions\DissociateBulkAction::make(),
                 ]),
             ]);
     }

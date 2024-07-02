@@ -4,20 +4,13 @@ namespace App\Filament\Resources;
 
 use App\Enums\UserRole;
 use App\Filament\Common\CommonFields;
-use App\Filament\CommonFieldFilament;
 use App\Filament\Resources\UserResource\Pages;
-use App\Filament\Resources\UserResource\RelationManagers;
-use App\Filament\Traits\CreatedAtField;
-use App\Filament\Traits\UpdatedAtField;
 use App\Models\User;
-use Carbon\Carbon;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class UserResource extends Resource
 {

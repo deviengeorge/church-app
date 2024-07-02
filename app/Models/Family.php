@@ -30,22 +30,22 @@ class Family extends Model
     ];
 
     protected $casts = [
-        'status' => FamilyStatus::class,
+        "status" => FamilyStatus::class,
     ];
 
     public function area()
     {
-        return $this->belongsTo(Area::class, 'area_id');
+        return $this->belongsTo(Area::class, "area_id");
     }
 
     public function street()
     {
-        return $this->belongsTo(Street::class, 'street_id');
+        return $this->belongsTo(Street::class, "street_id");
     }
 
     public function members()
     {
-        return $this->hasMany(Person::class, 'family_id');
+        return $this->hasMany(Person::class, "family_id");
     }
 
     public function priest(): BelongsTo

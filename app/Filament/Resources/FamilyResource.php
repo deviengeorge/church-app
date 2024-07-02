@@ -7,14 +7,9 @@ use App\Enums\UserRole;
 use App\Filament\Common\CommonFields;
 use App\Filament\Resources\FamilyResource\Pages;
 use App\Filament\Resources\FamilyResource\RelationManagers;
-use App\Filament\Traits\CreatedAtField;
-use App\Filament\Traits\UpdatedAtField;
-use App\Livewire\FamilyReport;
-use App\Models\Area;
 use App\Models\Family;
 use App\Models\Street;
 use App\Models\User;
-use Barryvdh\DomPDF\Facade\Pdf;
 use Filament\Forms;
 use Filament\Infolists;
 use Filament\Forms\Components\Placeholder;
@@ -23,24 +18,17 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\Wizard;
 use Filament\Tables\Actions\BulkAction;
-use Filament\Tables\Columns\ColumnGroup;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Form;
-use Filament\Infolists\Components\Section as ComponentsSection;
 use Filament\Infolists\Infolist;
 use Filament\Resources\Resource;
 use Filament\Support\Enums\IconPosition;
 use Filament\Tables;
 use Filament\Tables\Table;
-use GuzzleHttp\Client;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Blade;
 use pxlrbt\FilamentExcel\Actions\Tables\ExportBulkAction;
 use pxlrbt\FilamentExcel\Exports\ExcelExport;
-
-use function Termwind\render;
 
 class FamilyResource extends Resource
 {
@@ -96,13 +84,13 @@ class FamilyResource extends Resource
                             Select::make('street_id')
                                 ->label("common.family.street")
                                 ->translateLabel()
-                                ->placeholder(fn(Forms\Get $get): string => empty ($get('area_id')) ? __("common.family.validation.select_area_first") : "")
+                                ->placeholder(fn (Forms\Get $get): string => empty($get('area_id')) ? __("common.family.validation.select_area_first") : "")
                                 ->options(function (Forms\Get $get): Collection {
                                     return Street::where('area_id', $get('area_id'))->pluck('name', 'id');
                                 })
                                 ->searchable()
                                 ->live()
-                                ->createOptionForm(fn(Forms\Get $get) => StreetResource::form_create($get('area_id'))),
+                                ->createOptionForm(fn (Forms\Get $get) => StreetResource::form_create($get('area_id'))),
                         ])->columns(2),
                         Tabs\Tab::make(__('common.family.tabs.apartment_info'))->schema([
                             TextInput::make('building_num')
@@ -140,34 +128,33 @@ class FamilyResource extends Resource
                     'lg' => 2,
                 ]),
             Section::make(__("common.family.tabs.info"))
-                ->hidden(fn(string $operation): bool => $operation === 'create')
+                ->hidden(fn (string $operation): bool => $operation === 'create')
                 ->schema([
                     Placeholder::make("created_at")
                         ->label("common.common_fields.created_at")
                         ->translateLabel()
-                        ->content(fn(Family $family): ?string => $family->created_at?->diffForHumans()),
+                        ->content(fn (Family $family): ?string => $family->created_at?->diffForHumans()),
                     Placeholder::make("updated_at")
                         ->label("common.common_fields.updated_at")
                         ->translateLabel()
-                        ->content(fn(Family $family): ?string => $family->updated_at?->diffForHumans()),
+                        ->content(fn (Family $family): ?string => $family->updated_at?->diffForHumans()),
 
                     Placeholder::make("Created By")
                         ->label("common.common_fields.created_by")
                         ->translateLabel()
-                        ->content(fn(Family $family): ?string => User::find($family->created_by)?->name),
+                        ->content(fn (Family $family): ?string => User::find($family->created_by)?->name),
                     Placeholder::make("Updated By")
                         ->label("common.common_fields.updated_by")
                         ->translateLabel()
-                        ->content(fn(Family $family): ?string => User::find($family->updated_by)?->name),
+                        ->content(fn (Family $family): ?string => User::find($family->updated_by)?->name),
                 ])
                 ->columnSpan([
                     'lg' => 1,
                 ]),
         ])->columns([
-                    'md' => 1,
-                    'lg' => 3,
-                ]);
-        ;
+            'md' => 1,
+            'lg' => 3,
+        ]);;
     }
 
     public static function table(Table $table): Table
@@ -268,7 +255,7 @@ class FamilyResource extends Resource
                     ->label('PDF')
                     ->color('success')
                     ->icon('heroicon-m-arrow-down-tray')
-                    ->url(fn(Family $record): string => route('family-report', ['family' => $record]))
+                    ->url(fn (Family $record): string => route('family-report', ['family' => $record]))
                     ->openUrlInNewTab(),
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
@@ -282,7 +269,7 @@ class FamilyResource extends Resource
                         ->form([
                             Forms\Components\Select::make('priest_id')
                                 ->label('Priest')
-                                ->options(fn() => User::where('role', UserRole::PRIEST)->pluck('name', 'id')),
+                                ->options(fn () => User::where('role', UserRole::PRIEST)->pluck('name', 'id')),
                         ])
                         ->action(function (Collection $records, array $data) {
                             $records->each(function ($record) use ($data) {
@@ -317,6 +304,7 @@ class FamilyResource extends Resource
                             ->translateLabel()
                             ->prefix("عائلة ")
                             ->copyable(),
+                        "helooo",
                         Infolists\Components\TextEntry::make('status')
                             ->label("common.family.status")
                             ->translateLabel()
@@ -347,7 +335,7 @@ class FamilyResource extends Resource
                             ->label("common.family.google_map_link")
                             ->translateLabel()
                             ->placeholder(__("common.common_fields.empty"))
-                            ->url(fn(Family $record) => $record->google_map_link)
+                            ->url(fn (Family $record) => $record->google_map_link)
                             ->openUrlInNewTab(),
                         Infolists\Components\TextEntry::make('building_num')
                             ->label("common.family.building_num")
